@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Button layoutX="292.0" layoutY="139.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Button" />
+      <Button layoutX="140.0" layoutY="139.0" mnemonicParsing="false" onAction="#switchToWeatherAppScene" prefHeight="25.0" prefWidth="49.0" text="Enter" />
+      <TextField fx:id="cityName" layoutX="92.0" layoutY="65.0" promptText="Enter City" />
+      <TextField fx:id="apiKey" layoutX="79.0" layoutY="22.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter api key" />
+      <Button layoutX="140.0" layoutY="103.0" mnemonicParsing="false" text="About" />
    </children>
 </Pane>

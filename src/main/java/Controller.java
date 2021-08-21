@@ -1,10 +1,16 @@
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -22,30 +28,34 @@ import java.util.Scanner;
 
 public class Controller {
 
-    public TextField username;
-    public TextField password;
-    public ListView files;
-    public Button copyButton;
-    public Button clearButton;
-    public Button deleteButton;
-    public int copyNum = 0;
-    public int fileDireNum = 0;
+    public TextField cityName;
+    public TextField apiKey;
 
-    public void loginButtonClicked(){
-        System.out.println("Button Clicked");
+    public Stage stage;
+    private Scene scene;
+    private Parent root;
+
+
+
+    public void switchToWeatherAppScene(ActionEvent event) throws IOException {
+
+        String finalApiKey =apiKey.getText() ;
+        String city = cityName.getText();
+
         accessAPI();
+
+        root = FXMLLoader.load(getClass().getResource("mainSample.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
+
 
 
     public void accessAPI(){
         try {
-            apiKey WeatherAPIKey = new apiKey();
-
-
-            String apiKey = WeatherAPIKey.getAPIKey();
-            String city = "Toronto";
-
-            String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+            String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText() + "&appid=" + apiKey.getText();
             URL networkURL = new URL(sURL);
             URLConnection conn = networkURL.openConnection();
 
@@ -68,21 +78,20 @@ public class Controller {
             String currTemp = tempInfo.get("temp").toString();
             String feelsLike = tempInfo.get("feels_like").toString();
 
-            System.out.println(currTemp);
-            System.out.println(feelsLike);
+            JSONArray cloudInformation = weatherData.getJSONArray("weather");
+            JSONObject cloudInfo = cloudInformation.getJSONObject(0);
+            String cloudDiscription = cloudInfo.getString("description");
+
+
+
+            System.out.println("Current temp is: " + currTemp);
+            System.out.println("Feels like: " + feelsLike);
+            System.out.println("Current clouds: " + cloudDiscription);
 
 
 
 
-
-
-
-
-
-
-
-
-
+            in.close();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
