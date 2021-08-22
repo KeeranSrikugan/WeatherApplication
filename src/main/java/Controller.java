@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
@@ -30,6 +32,7 @@ public class Controller {
 
     public TextField cityName;
     public TextField apiKey;
+    public Text failLoginMessage;
 
     public Stage stage;
     private Scene scene;
@@ -37,22 +40,37 @@ public class Controller {
 
 
 
-    public void switchToWeatherAppScene(ActionEvent event) throws IOException {
 
-        String finalApiKey =apiKey.getText() ;
-        String city = cityName.getText();
+    public boolean checkLink(){
+        try {
+            String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText() + "&appid=" + apiKey.getText();
+            URL networkURL = new URL(sURL);
+            URLConnection conn = networkURL.openConnection();
 
-        accessAPI();
-
-        root = FXMLLoader.load(getClass().getResource("mainSample.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            conn.setDoOutput(false);
+            conn.setDoInput(true);
+            InputStream in = conn.getInputStream();
+            return true;
+        }  catch (IOException e) {
+            return false;
+        }
     }
 
+    public void switchToWeatherAppScene(ActionEvent event) throws IOException {
 
+        if (checkLink() == true) {
+            accessAPI();
+            root = FXMLLoader.load(getClass().getResource("mainSample.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }else{
+            failLoginMessage.setText("Incorrect Login Information");
+        }
+    }
 
+    //This 
     public void accessAPI(){
         try {
             String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText() + "&appid=" + apiKey.getText();
