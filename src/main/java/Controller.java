@@ -1,31 +1,23 @@
-import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
-import java.lang.reflect.Field;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 
 public class Controller {
@@ -33,6 +25,8 @@ public class Controller {
     public TextField cityName;
     public TextField apiKey;
     public Text failLoginMessage;
+    public ImageView images;
+    public Text tempText;
 
     public Stage stage;
     private Scene scene;
@@ -70,7 +64,7 @@ public class Controller {
         }
     }
 
-    //This 
+    //This
     public void accessAPI(){
         try {
             String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText() + "&appid=" + apiKey.getText();
@@ -95,17 +89,18 @@ public class Controller {
             JSONObject tempInfo = weatherData.getJSONObject("main");
             String currTemp = tempInfo.get("temp").toString();
             String feelsLike = tempInfo.get("feels_like").toString();
+            int currTempKelvin = tempInfo.getInt("temp");
 
             JSONArray cloudInformation = weatherData.getJSONArray("weather");
             JSONObject cloudInfo = cloudInformation.getJSONObject(0);
             String cloudDiscription = cloudInfo.getString("description");
 
 
+            double currTempCelcius = currTempKelvin - 273.15;
 
             System.out.println("Current temp is: " + currTemp);
             System.out.println("Feels like: " + feelsLike);
             System.out.println("Current clouds: " + cloudDiscription);
-
 
 
 

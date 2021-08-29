@@ -1,0 +1,12 @@
+.anchorpane{
+    -fx-background-color: LightCyan;
+}
+
+.btm-pane{
+    -fx-background-color: DarkSlateGray;
+}
+
+.new-pane{
+    -fx-background-color: Teal;
+}
+
