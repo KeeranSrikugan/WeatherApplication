@@ -1,5 +1,6 @@
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -26,13 +27,14 @@ public class Controller {
     public TextField apiKey;
     public Text failLoginMessage;
     public ImageView images;
+
+    @FXML
     public Text tempText;
+
 
     public Stage stage;
     private Scene scene;
     private Parent root;
-
-
 
 
     public boolean checkLink(){
@@ -53,7 +55,11 @@ public class Controller {
     public void switchToWeatherAppScene(ActionEvent event) throws IOException {
 
         if (checkLink() == true) {
-            accessAPI();
+
+            //This is where the city name and api key are sent to main to be accessed by the other controller file
+            Main.setCity(cityName.getText());
+            Main.setAPI(apiKey.getText());
+
             root = FXMLLoader.load(getClass().getResource("mainSample.fxml"));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -63,54 +69,4 @@ public class Controller {
             failLoginMessage.setText("Incorrect Login Information");
         }
     }
-
-    //This
-    public void accessAPI(){
-        try {
-            String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText() + "&appid=" + apiKey.getText();
-            URL networkURL = new URL(sURL);
-            URLConnection conn = networkURL.openConnection();
-
-            conn.setDoOutput(false);
-            conn.setDoInput(true);
-            InputStream in = conn.getInputStream();
-
-            BufferedReader input = new BufferedReader(new InputStreamReader(in));
-
-            StringBuffer buffer = new StringBuffer();
-            String line;
-
-            while ((line = input.readLine()) != null){
-                buffer.append(line);
-            }
-
-            String jsonData = buffer.toString();
-            JSONObject weatherData = new JSONObject(jsonData);
-            JSONObject tempInfo = weatherData.getJSONObject("main");
-            String currTemp = tempInfo.get("temp").toString();
-            String feelsLike = tempInfo.get("feels_like").toString();
-            int currTempKelvin = tempInfo.getInt("temp");
-
-            JSONArray cloudInformation = weatherData.getJSONArray("weather");
-            JSONObject cloudInfo = cloudInformation.getJSONObject(0);
-            String cloudDiscription = cloudInfo.getString("description");
-
-
-            double currTempCelcius = currTempKelvin - 273.15;
-
-            System.out.println("Current temp is: " + currTemp);
-            System.out.println("Feels like: " + feelsLike);
-            System.out.println("Current clouds: " + cloudDiscription);
-
-
-
-            in.close();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }

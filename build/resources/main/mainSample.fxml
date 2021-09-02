@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="312.0" styleClass="anchorpane" stylesheets="@weatherUI.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="312.0" styleClass="anchorpane" stylesheets="@weatherUI.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SecondController">
    <children>
       <Pane layoutY="228.0" prefHeight="155.0" prefWidth="314.0" styleClass="btm-pane">
          <children>
             <Pane layoutX="4.0" layoutY="14.0" prefHeight="39.0" prefWidth="306.0" styleClass="new-pane">
                <children>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pressure">
+                  <Text fx:id="pressureText" fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wind">
+                  <Text fx:id="windText" fill="WHITE" fontSmoothingType="LCD" layoutX="134.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="222.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Humidity">
+                  <Text fx:id="humidityText" fill="WHITE" fontSmoothingType="LCD" layoutX="222.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="16.0" />
                      </font>
@@ -31,17 +32,17 @@
                </children></Pane>
             <Pane layoutX="4.0" layoutY="81.0" prefHeight="61.0" prefWidth="306.0" styleClass="new-pane">
                <children>
-                  <Text fx:id="pressureText" fill="WHITE" layoutX="3.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1019 hPa" wrappingWidth="84.13128662109375">
+                  <Text fx:id="pressureNumberText" fill="WHITE" layoutX="3.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="84.13128662109375">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="118.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0.45 m/s">
+                  <Text fx:id="windSpeedText" fill="WHITE" layoutX="118.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="16.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="246.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="76%">
+                  <Text fx:id="humidityNumberText" fill="WHITE" fontSmoothingType="LCD" layoutX="246.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
                         <Font name="DejaVu Sans Mono Bold" size="16.0" />
                      </font>
@@ -49,35 +50,40 @@
                </children>
             </Pane>
          </children></Pane>
-      <ImageView fx:id="images" fitHeight="164.0" fitWidth="167.0" layoutX="82.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Images/02d.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="tempText" fill="#015b49" fontSmoothingType="LCD" layoutX="14.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="29°C">
+      <ImageView fx:id="images" fitHeight="164.0" fitWidth="167.0" layoutX="82.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="tempText" fill="#015b49" fontSmoothingType="LCD" layoutX="14.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="30.0" />
          </font>
       </Text>
-      <Text fill="#015b49" fontSmoothingType="LCD" layoutX="103.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cloudy Skies">
+      <Text fx:id="descriptionText" fill="#015b49" fontSmoothingType="LCD" layoutX="98.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="DejaVu Sans Bold" size="17.0" />
          </font>
       </Text>
-      <Text fill="#015b49" layoutX="105.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ontario, Toronto" />
-      <Pane layoutX="254.0" layoutY="158.0" prefHeight="48.0" prefWidth="59.0" styleClass="new-pane">
+      <Text fx:id="cityText" fill="#015b49" layoutX="100.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Pane layoutX="253.0" layoutY="158.0" prefHeight="48.0" prefWidth="59.0" styleClass="new-pane">
          <children>
-            <Text fill="WHITE" layoutX="13.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="May">
+            <Text fx:id="monthText" fill="WHITE" layoutX="13.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Courier New" size="19.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="19.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="23">
+            <Text fx:id="dayText" fill="WHITE" layoutX="19.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
          </children>
       </Pane>
+      <ButtonBar layoutX="-118.0" layoutY="23.0" prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+          <Button mnemonicParsing="false" onAction="#updateInfo" prefHeight="26.0" prefWidth="59.0" text="Start" textFill="#015b49">
+               <font>
+                  <Font name="DejaVu Sans Mono Bold" size="12.0" />
+               </font>
+            </Button>
+         </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>
