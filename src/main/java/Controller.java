@@ -36,7 +36,6 @@ public class Controller {
     private Scene scene;
     private Parent root;
 
-
     public boolean checkLink(){
         try {
             String sURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName.getText() + "&appid=" + apiKey.getText();

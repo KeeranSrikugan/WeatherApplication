@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="312.0" styleClass="anchorpane" stylesheets="@weatherUI.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SecondController">
+<AnchorPane fx:id="background1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="312.0" styleClass="anchorpane" stylesheets="@weatherUI.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SecondController">
    <children>
-      <Pane layoutY="228.0" prefHeight="155.0" prefWidth="314.0" styleClass="btm-pane">
+      <Pane fx:id="bottomHalf" layoutX="-2.0" layoutY="228.0" prefHeight="155.0" prefWidth="314.0" styleClass="btm-pane">
          <children>
-            <Pane layoutX="4.0" layoutY="14.0" prefHeight="39.0" prefWidth="306.0" styleClass="new-pane">
+            <Pane fx:id="bottomHalf1" layoutX="4.0" layoutY="14.0" prefHeight="39.0" prefWidth="306.0" styleClass="new-pane">
                <children>
                   <Text fx:id="pressureText" fill="WHITE" fontSmoothingType="LCD" layoutX="5.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0">
                      <font>
@@ -30,7 +30,7 @@
                      </font>
                   </Text>
                </children></Pane>
-            <Pane layoutX="4.0" layoutY="81.0" prefHeight="61.0" prefWidth="306.0" styleClass="new-pane">
+            <Pane fx:id="bottomHalf2" layoutX="5.0" layoutY="81.0" prefHeight="61.0" prefWidth="306.0" styleClass="new-pane">
                <children>
                   <Text fx:id="pressureNumberText" fill="WHITE" layoutX="3.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="84.13128662109375">
                      <font>
@@ -50,7 +50,7 @@
                </children>
             </Pane>
          </children></Pane>
-      <ImageView fx:id="images" fitHeight="164.0" fitWidth="167.0" layoutX="82.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="images" fitHeight="164.0" fitWidth="167.0" layoutX="78.0" pickOnBounds="true" preserveRatio="true" />
       <Text fx:id="tempText" fill="#015b49" fontSmoothingType="LCD" layoutX="14.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="30.0" />
@@ -62,7 +62,7 @@
          </font>
       </Text>
       <Text fx:id="cityText" fill="#015b49" layoutX="100.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Pane layoutX="253.0" layoutY="158.0" prefHeight="48.0" prefWidth="59.0" styleClass="new-pane">
+      <Pane fx:id="upperHalf1" layoutX="253.0" layoutY="158.0" prefHeight="48.0" prefWidth="59.0" styleClass="new-pane">
          <children>
             <Text fx:id="monthText" fill="WHITE" layoutX="13.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
@@ -78,12 +78,22 @@
       </Pane>
       <ButtonBar layoutX="-118.0" layoutY="23.0" prefHeight="40.0" prefWidth="200.0">
          <buttons>
-          <Button mnemonicParsing="false" onAction="#updateInfo" prefHeight="26.0" prefWidth="59.0" text="Start" textFill="#015b49">
+          <Button fx:id="button1" mnemonicParsing="false" onAction="#updateInfo" prefHeight="26.0" prefWidth="59.0" text="Start" textFill="#015b49">
                <font>
                   <Font name="DejaVu Sans Mono Bold" size="12.0" />
                </font>
             </Button>
          </buttons>
       </ButtonBar>
+      <Button fx:id="button2" layoutX="223.0" layoutY="31.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Dark" textFill="#015b49" visible="false">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button3" layoutX="8.0" layoutY="30.0" mnemonicParsing="false" onAction="#updateInfo" prefHeight="26.0" prefWidth="84.0" text="Light" textFill="#015b49" visible="false">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

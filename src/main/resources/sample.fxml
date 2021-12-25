@@ -7,7 +7,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Button layoutX="140.0" layoutY="172.0" mnemonicParsing="false" onAction="#switchToWeatherAppScene" prefHeight="25.0" prefWidth="49.0" text="Enter" />
+      <Button fx:id="button1" layoutX="140.0" layoutY="172.0" mnemonicParsing="false" onAction="#switchToWeatherAppScene" prefHeight="25.0" prefWidth="49.0" text="Enter" />
       <TextField fx:id="cityName" layoutX="92.0" layoutY="65.0" promptText="Enter City" />
       <TextField fx:id="apiKey" layoutX="79.0" layoutY="22.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter api key" />
       <Button layoutX="140.0" layoutY="134.0" mnemonicParsing="false" text="About" />
